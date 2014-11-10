@@ -57,6 +57,6 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.listern(app.get('port'));
+app.listen(app.get('port'));
 
 module.exports = app;
