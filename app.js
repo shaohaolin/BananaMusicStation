@@ -7,13 +7,15 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var scPublic = require('./routes/publicInfo');
+var authentication = require('./routes/auth');
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('port', process.env.PORT || 8380);
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -26,6 +28,35 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+app.get('/login', function (req, res) {
+
+    res.render('login');
+});
+
+app.get('/tracks', function(req, res) {
+
+    scPublic.getTracks(function(tracks) {
+        res.send(tracks);
+    });
+});
+
+app.get('/tracks/:musicType', function(req, res) {
+    var _musicType = req.params.musicType;
+    scPublic.getSameMusic(_musicType, function(cb){
+        res.send(cb);
+    });
+});
+
+app.get('/auth', function(req,res) {
+    authentication.getConnectionCode(function (cb) {
+       
+       var url = res.send(cb);
+       console.log(url.code);
+       //authentication.obtainRequestToken
+    });
+});
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -34,6 +65,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
+
 
 // development error handler
 // will print stacktrace
@@ -57,6 +89,5 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.listen(app.get('port'));
 
 module.exports = app;

@@ -4,14 +4,52 @@ block content
   h1= title
   p Welcome to #{title}
 
+  // Wrapper
+  #wrapper
   input(
-  	type ='button'
-  	id ='loadTracks'
-  	class ='button big'
-  	value = 'Get hottest track'
-  	)
-  h2 Track List
-  #track
+  type ='button'
+  id ='loadTracks'
+  class ='button big'
+  value = 'Get hottest track'
+  )
 
-  h3 Result
-  ul#results
+  input(
+  type ='button'
+  id ='hiphop'
+  class ='button big'
+  value = 'Hip-Hop Music'
+  )
+
+  input(
+  type ='button'
+  id ='country'
+  class ='button big'
+  value = 'Country Music'
+  )
+
+  input(
+  type ='button'
+  id ='pop'
+  class ='button big'
+  value = 'Pop Music'
+  )
+
+  input(
+  type ='button'
+  id ='electronic'
+  class ='button big'
+  value = 'Electronic'
+  )
+
+  h2 Track List
+  #tracklist
+
+  // Music List  
+  h2 Music Information List
+  #musicList
+    table
+      thead
+        th Name of the Song
+        th Like/Dislike
+      tbody
+  // / Music List
