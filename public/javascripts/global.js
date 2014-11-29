@@ -37,6 +37,7 @@ $(document).ready(function() {
          tableContent += '<tr>';
          tableContent += '<td>' + track.title + '</td>';
          tableContent += '<td><a href="#" class="linkdeletesong" rel="' + index + '">Dislike</a></td>';
+         tableContent += '<td><a href="#" class="linkshowComment" rel="' + track.id + '">Show Comment</a></td>';
          tableContent += '</tr>';
   		});
 
@@ -56,7 +57,30 @@ $("#country").on("click", getMusic);
 $("#pop").on("click", getMusic);
 $("#electronic").on("click", getMusic);
 $("#musicList table tbody").on('click','td a.linkdeletesong',deleteThisSong);
-//$('#btn-login.btn.btn-primary').on('click', te);
+$("#musicList table tbody").on('click','td a.linkshowComment',showMusicComment);
+
+
+function showMusicComment(event) {
+
+  if (!$('#commentList').is(":empty")){
+        $('#commentList').empty();
+      }
+
+  var music_id = $(this).attr('rel') ;
+  alert("Music ID: " +music_id);
+  // jQuery AJAX call for JSON
+    $.getJSON( '/users/musiclist', function( data ) {
+
+        // For each item in our JSON, add a table row and cells to the content string
+        $.each(data, function(){
+            if(this.musicID == music_id){
+              $('#commentList').append($('<li></li>').html(this.comment));
+              
+            }
+        });
+    });
+
+};
 
 
 
@@ -92,6 +116,7 @@ function getMusic(event){
          tableContent += '<tr>';
          tableContent += '<td>' + track.title + '</td>';
          tableContent += '<td><a href="#" class="linkdeletesong" rel="' + index + '" >Dislike</a></td>';
+         tableContent += '<td><a href="#" class="linkshowComment" rel="' + track.id + '">Show Comment</a></td>';
          tableContent += '</tr>';
 
       });
@@ -104,10 +129,12 @@ function getMusic(event){
 function deleteThisSong(event){
 
    // Pop up a confirmation dialog
-    var confirmation = confirm('Are you sure you want to delete this user?');
+    var confirmation = confirm('Are you sure you want to delete this song?');
 
     // Check and make sure the user confirmed
     if (confirmation === true) {
+      
+       $('#commentList').empty();
       
       var index = $(this).attr('rel') ;
 
@@ -128,6 +155,7 @@ function deleteThisSong(event){
          tableContent += '<tr>';
          tableContent += '<td>' + track.title + '</td>';
          tableContent += '<td><a href="#" class="linkdeletesong" rel="' + index + '" >Dislike</a></td>';
+         tableContent += '<td><a href="#" class="linkshowComment" rel="' + track.id + '">Show Comment</a></td>';
          tableContent += '</tr>';
 
       });

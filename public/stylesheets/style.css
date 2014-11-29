@@ -53,12 +53,19 @@ a {
 	}
 
 #tracklist {
-margin: 0 0 30px 0;
+	width:500x;
 }
 	#tracklist li {
-	width: 500px;
+		padding:15px;
+		border:1px solid #CCC;
+		background:rgba(80,120,255,0.05);
+		width: 650px;
 	}
 
 	#tracklist div {
-	width: 700px;
+		padding:15px;
+		border:1px solid #CCC;
+		background:rgba(80,120,255,0.05);
+		width: 650px;
 	}
+

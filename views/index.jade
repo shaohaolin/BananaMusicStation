@@ -7,6 +7,7 @@ block content
   
   // Wrapper
   #wrapper
+
     // Log In INFO
     #logInInfo
       h2 Log In Info
@@ -14,7 +15,42 @@ block content
         strong UserName: #{username}
           <span id='userInfoName'></span>
         br
+        h2 Track List
+        #tracklist
     // /Log In INFO
+    input(
+  type ='button'
+  id ='loadTracks'
+  class ='button big'
+  value = 'Get hottest track'
+  )
+    input(
+  type ='button'
+  id ='hiphop'
+  class ='button big'
+  value = 'Hip-Hop Music'
+  )
+
+    input(
+  type ='button'
+  id ='country'
+  class ='button big'
+  value = 'Country Music'
+  )
+
+    input(
+  type ='button'
+  id ='pop'
+  class ='button big'
+  value = 'Pop Music'
+  )
+
+    input(
+  type ='button'
+  id ='electronic'
+  class ='button big'
+  value = 'Electronic'
+  )
 
     // Music List  
     h2 Music Information List
@@ -22,44 +58,31 @@ block content
       table
         thead
           th Name of the Song
-          th Like/Dislike
+          th Dislike
+          th showComment
         tbody
     // / Music List
 
-  input(
-  type ='button'
-  id ='loadTracks'
-  class ='button big'
-  value = 'Get hottest track'
-  )
+    // Comment List
+    h2 Music Comment
+    #commentList
+    // /Comment List
 
-  input(
-  type ='button'
-  id ='hiphop'
-  class ='button big'
-  value = 'Hip-Hop Music'
-  )
+    // ADD USER
+    h2 Add User
+    #addUser
+      fieldset
+        input#inputUserName(type='text',placeholder='Username')
+        input#inputUserEmail(type='text',placeholder='Email')
+        br
+        input#inputUserFullname(type='text',placeholder='Full Name')
+        input#inputUserAge(type='text',placeholder='Age')
+        br
+        input#inputUserLocation(type='text',placeholder='Location')
+        input#inputUserGender(type='text',placeholder='gender')
+        br
+        button#btnAddUser Add User
+    // /ADD USER
+  // /Wrapper
 
-  input(
-  type ='button'
-  id ='country'
-  class ='button big'
-  value = 'Country Music'
-  )
 
-  input(
-  type ='button'
-  id ='pop'
-  class ='button big'
-  value = 'Pop Music'
-  )
-
-  input(
-  type ='button'
-  id ='electronic'
-  class ='button big'
-  value = 'Electronic'
-  )
-
-  h2 Track List
-  #tracklist
