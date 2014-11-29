@@ -4,7 +4,7 @@ SC.initialize({
 });
 
 var tracksListData = [];
-var baseURL = "http://localhost:3000"
+var baseURL = "http://localhost:3000";
 
 $(document).ready(function() {
 
@@ -56,6 +56,9 @@ $("#country").on("click", getMusic);
 $("#pop").on("click", getMusic);
 $("#electronic").on("click", getMusic);
 $("#musicList table tbody").on('click','td a.linkdeletesong',deleteThisSong);
+//$('#btn-login.btn.btn-primary').on('click', te);
+
+
 
 function getMusic(event){
 
@@ -108,7 +111,6 @@ function deleteThisSong(event){
       
       var index = $(this).attr('rel') ;
 
-      alert(index);
       tracksListData.splice(index,1);
       var tableContent ='';
       if (!$('#tracklist').is(":empty")){
@@ -129,6 +131,7 @@ function deleteThisSong(event){
          tableContent += '</tr>';
 
       });
+
 
         // Inject the whole content string into our existing HTML table
         $('#musicList table tbody').html(tableContent);

@@ -41,6 +41,17 @@ a {
 				text-align:center;
 			}
 
+#logInInfo {
+	width:250px;
+	position:absolute;
+	top:0; left:0;
+}
+	#logInInfo p {
+		padding:15px;
+		border:1px solid #CCC;
+		background:rgba(80,120,255,0.05);
+	}
+
 #tracklist {
 margin: 0 0 30px 0;
 }

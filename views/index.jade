@@ -3,9 +3,19 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-
+  p #{result}
+  
   // Wrapper
   #wrapper
+    // Log In INFO
+    #logInInfo
+      h2 Log In Info
+      p
+        strong UserName: #{username}
+          <span id='userInfoName'></span>
+        br
+    // /Log In INFO
+
     // Music List  
     h2 Music Information List
     #musicList

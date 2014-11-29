@@ -32,6 +32,33 @@ app.get('/login', function (req, res) {
     res.render('login');
 });
 
+app.post('/login', function (req, res) {
+
+    var username = req.body.user;
+    var password = req.body.pass;
+    console.log(username);
+    console.log(password);
+
+    if (username != "shaohaolinca@gmail.com") {
+
+        res.render('login', { error: 'Invalid User Name.'});
+    }
+
+    if (password != "hello") {
+
+        res.render('login', { error: 'Invalid Password.'});
+    }
+
+    else{
+
+        res.render('index', {   title: 'Supreme Banana Station',
+                            username: 'Shaohao',
+                            });
+    }
+
+    
+});
+
 app.get('/tracks', function(req, res) {
 
     scPublic.getTracks(function(tracks) {
