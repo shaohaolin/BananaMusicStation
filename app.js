@@ -43,30 +43,38 @@ app.get('/login', function (req, res) {
     res.render('login');
 });
 
-app.post('/login', function (req, res) {
+app.post('/login/:key', function (req, res) {
 
-    var username = req.body.user;
-    var password = req.body.pass;
-    console.log(username);
-    console.log(password);
+    if (req.params.key == "banana"){
+            var username = req.body.user;
+            var password = req.body.pass;
+            console.log(username);
+            console.log(password);
 
-    if (username != "shaohaolinca@gmail.com") {
+            if (username != "shaohaolinca@gmail.com") {
 
-        res.render('login', { error: 'Invalid User Name.'});
+                res.render('login', { error: 'Invalid User Name.'});
+            }
+
+            if (password != "hello") {
+
+                res.render('login', { error: 'Invalid Password.'});
+            }
+
+            else{
+
+            //res.location("/");
+            res.render('index', {   title: 'Supreme Banana Station',
+                        username: 'Shaohao',
+                        });
+            }
+
+    }
+    else {
+        res.send(   "{'Incorrect Key!'} " );
     }
 
-    if (password != "hello") {
-
-        res.render('login', { error: 'Invalid Password.'});
-    }
-
-    else{
-
-        //res.location("/");
-        res.render('index', {   title: 'Supreme Banana Station',
-                            username: 'Shaohao',
-                            });
-    }
+    
 
     
 });
