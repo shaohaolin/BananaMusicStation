@@ -59,7 +59,8 @@ block content
         thead
           th Name of the Song
           th Dislike
-          th showComment
+          th Comment
+          th Comment
         tbody
     // / Music List
 
@@ -69,19 +70,13 @@ block content
     // /Comment List
 
     // ADD USER
-    h2 Add User
-    #addUser
+    h2 Add Comment
+    #addComment
       fieldset
-        input#inputUserName(type='text',placeholder='Username')
-        input#inputUserEmail(type='text',placeholder='Email')
+        input#musicID(type='text', placeholder='Music ID')
+        input#inputComment(type='text',placeholder='Comment')
         br
-        input#inputUserFullname(type='text',placeholder='Full Name')
-        input#inputUserAge(type='text',placeholder='Age')
-        br
-        input#inputUserLocation(type='text',placeholder='Location')
-        input#inputUserGender(type='text',placeholder='gender')
-        br
-        button#btnAddUser Add User
+        button#btnAddComment Add Comment
     // /ADD USER
   // /Wrapper
 

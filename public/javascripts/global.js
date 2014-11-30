@@ -37,7 +37,8 @@ $(document).ready(function() {
          tableContent += '<tr>';
          tableContent += '<td>' + track.title + '</td>';
          tableContent += '<td><a href="#" class="linkdeletesong" rel="' + index + '">Dislike</a></td>';
-         tableContent += '<td><a href="#" class="linkshowComment" rel="' + track.id + '">Show Comment</a></td>';
+         tableContent += '<td><a href="#" class="linkshowComment" rel="' + track.id + '">Show</a></td>';
+         tableContent += '<td><a href="#" class="linkaddComment" rel="' + track.id + '">Add</a></td>';
          tableContent += '</tr>';
   		});
 
@@ -58,6 +59,64 @@ $("#pop").on("click", getMusic);
 $("#electronic").on("click", getMusic);
 $("#musicList table tbody").on('click','td a.linkdeletesong',deleteThisSong);
 $("#musicList table tbody").on('click','td a.linkshowComment',showMusicComment);
+$("#musicList table tbody").on('click','td a.linkaddComment',addMusicComment);
+$("#btnAddComment").on('click', addComment);
+
+function addComment(event) {
+
+
+  // Super basic validation - increase errorCount variable if any fields are blank
+    var errorCount = 0;
+
+    $('#addUser input').each(function(index, val) {
+        if($(this).val() === '' || ($('#addUser fieldset input#inputMessage').val().split('')[0] !=='#')) {errorCount++;}
+    });
+
+    // If it is, compile all user info into one object
+    if (errorCount === 0) {
+
+        var newComment = {
+          'musicID' : $('#addComment fieldset input#musicID').val(),
+          'comment' : $('#addComment fieldset input#inputComment').val()
+        }
+
+        // Use AJAX to post the object to our addcomment service
+        $.ajax({
+            type: 'POST',
+            data: newComment,
+            url: '/users/addcomment',
+            dataType: 'JSON'
+        }).done(function (response) {
+
+           // Check for successful (blank) response
+            if (response.msg === '') {
+
+                // Clear the form inputs
+                $('#addComment fieldset input').val('');
+            }
+            else {
+
+                // If something goes wrong, alert the error message that our service returned
+                alert('Error: '+response.msg);
+            }
+        });
+    }
+     else {
+        // If errorCount is more that 0, error out
+        alert('Please fill in all fields');
+        return false;
+    }
+
+};
+
+
+function addMusicComment(event){
+
+    var music_id = $(this).attr('rel') ;
+    alert("Music ID: " + music_id);
+    $("#musicID").val(music_id);
+
+};
 
 
 function showMusicComment(event) {
@@ -68,16 +127,22 @@ function showMusicComment(event) {
 
   var music_id = $(this).attr('rel') ;
   alert("Music ID: " +music_id);
+  var findComment = 0;
   // jQuery AJAX call for JSON
     $.getJSON( '/users/musiclist', function( data ) {
 
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(){
             if(this.musicID == music_id){
+              findComment = 1;
               $('#commentList').append($('<li></li>').html(this.comment));
               
             }
         });
+        if (findComment == 0) {
+          var msg = "No comment is created for this song.";
+          $('#commentList').append($('<li></li>').html(msg));
+        }
     });
 
 };
@@ -116,7 +181,8 @@ function getMusic(event){
          tableContent += '<tr>';
          tableContent += '<td>' + track.title + '</td>';
          tableContent += '<td><a href="#" class="linkdeletesong" rel="' + index + '" >Dislike</a></td>';
-         tableContent += '<td><a href="#" class="linkshowComment" rel="' + track.id + '">Show Comment</a></td>';
+         tableContent += '<td><a href="#" class="linkshowComment" rel="' + track.id + '">Show</a></td>';
+         tableContent += '<td><a href="#" class="linkaddComment" rel="' + track.id + '">Add</a></td>';
          tableContent += '</tr>';
 
       });
@@ -155,7 +221,8 @@ function deleteThisSong(event){
          tableContent += '<tr>';
          tableContent += '<td>' + track.title + '</td>';
          tableContent += '<td><a href="#" class="linkdeletesong" rel="' + index + '" >Dislike</a></td>';
-         tableContent += '<td><a href="#" class="linkshowComment" rel="' + track.id + '">Show Comment</a></td>';
+         tableContent += '<td><a href="#" class="linkshowComment" rel="' + track.id + '">Show</a></td>';
+         tableContent += '<td><a href="#" class="linkaddComment" rel="' + track.id + '">Add</a></td>';
          tableContent += '</tr>';
 
       });

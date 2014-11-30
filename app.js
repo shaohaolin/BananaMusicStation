@@ -62,6 +62,7 @@ app.post('/login', function (req, res) {
 
     else{
 
+        //res.location("/");
         res.render('index', {   title: 'Supreme Banana Station',
                             username: 'Shaohao',
                             });
