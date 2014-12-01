@@ -1,10 +1,10 @@
 SC.initialize({
     client_id: '0e2f4290ff93af6c624a9a7c52526231',
-    redirect_uri: 'http://localhost:8380'
+    redirect_uri: 'http://104.131.97.125:8380'
 });
 
 var tracksListData = [];
-var baseURL = "http://localhost:8380";
+var baseURL = "http://104.131.97.125:8380";
 
 $(document).ready(function() {
 

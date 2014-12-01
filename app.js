@@ -53,12 +53,12 @@ app.post('/login', function (req, res) {
 
     if (username != "shaohaolinca@gmail.com") {
 
-        res.render('login', { error: 'Invalid User Name.'});
+        res.render('login', { error: 'Invalid User Name or Password.'});
     }
 
     if (password != "hello") {
 
-        res.render('login', { error: 'Invalid Password.'});
+        res.render('login', { error: 'Invalid User Name or Password.'});
     }
 
     else{
