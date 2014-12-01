@@ -14,7 +14,7 @@ router.get('/musiclist', function(req, res) {
 
 
 /*
- * POST to adduser.
+ * POST to addcomment.
  */
 router.post('/addcomment', function(req, res) {
     var db = req.db;

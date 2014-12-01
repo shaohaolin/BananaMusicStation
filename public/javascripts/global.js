@@ -1,10 +1,10 @@
 SC.initialize({
     client_id: '0e2f4290ff93af6c624a9a7c52526231',
-    redirect_uri: 'http://localhost:3000'
+    redirect_uri: 'http://localhost:8380'
 });
 
 var tracksListData = [];
-var baseURL = "http://localhost:3000";
+var baseURL = "http://localhost:8380";
 
 $(document).ready(function() {
 
@@ -113,7 +113,8 @@ function addComment(event) {
 function addMusicComment(event){
 
     var music_id = $(this).attr('rel') ;
-    alert("Music ID: " + music_id);
+    
+    // automatically fill in the music id
     $("#musicID").val(music_id);
 
 };
@@ -126,7 +127,7 @@ function showMusicComment(event) {
       }
 
   var music_id = $(this).attr('rel') ;
-  alert("Music ID: " +music_id);
+  
   var findComment = 0;
   // jQuery AJAX call for JSON
     $.getJSON( '/users/musiclist', function( data ) {

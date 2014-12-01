@@ -17,6 +17,7 @@ var authentication = require('./routes/auth');
 var app = express();
 
 // view engine setup
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -43,38 +44,29 @@ app.get('/login', function (req, res) {
     res.render('login');
 });
 
-app.post('/login/:key', function (req, res) {
+app.post('/login', function (req, res) {
 
-    if (req.params.key == "banana"){
-            var username = req.body.user;
-            var password = req.body.pass;
-            console.log(username);
-            console.log(password);
+    var username = req.body.user;
+    var password = req.body.pass;
+    console.log(username);
+    console.log(password);
 
-            if (username != "shaohaolinca@gmail.com") {
+    if (username != "shaohaolinca@gmail.com") {
 
-                res.render('login', { error: 'Invalid User Name.'});
-            }
-
-            if (password != "hello") {
-
-                res.render('login', { error: 'Invalid Password.'});
-            }
-
-            else{
-
-            //res.location("/");
-            res.render('index', {   title: 'Supreme Banana Station',
-                        username: 'Shaohao',
-                        });
-            }
-
-    }
-    else {
-        res.send(   "{'Incorrect Key!'} " );
+        res.render('login', { error: 'Invalid User Name.'});
     }
 
-    
+    if (password != "hello") {
+
+        res.render('login', { error: 'Invalid Password.'});
+    }
+
+    else{
+
+        res.render('index', {   title: 'Supreme Banana Station',
+                            username: 'Shaohao',
+                            });
+    }
 
     
 });
@@ -135,5 +127,5 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
+app.listen(8380);
 module.exports = app;
